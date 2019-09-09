@@ -3,37 +3,78 @@
         <meta charset="utf-8">
         <title>jQuery</title>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <style>
+            #wrap { width: 500px; margin: 0 auto;}
+            #nations > thead > tr > { background-color:purple; color: yellow;}
+            #nations > thead > tr > th { padding: 0px 1px 0px 0px; width: 150px;}
+            #nations > tbody > tr > td { border-bottom: solid 1px gray;}
+        </style>
         <script>
             $(document).ready(function(){
                 var nationData = [
                     {no:1, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:2, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:3, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:4, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:5, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:6, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:7, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:8, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:9, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:10, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:11, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:12, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:13, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:14, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:15, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:16, name:"대한민국", capital:"서울", region:"asia"},
-                    {no:17, name:"대한민국", capital:"서울", region:"asia"}
+                    {no:2, name:"미국", capital:"워싱턴DC", region:"america"},
+                    {no:3, name:"프랑스", capital:"파리", region:"europe"},
+                    {no:4, name:"영국", capital:"런던", region:"europe"},
+                    {no:5, name:"중국", capital:"베이징", region:"asia"},
+                    {no:6, name:"태국", capital:"방콕", region:"asia"},
+                    {no:7, name:"모로코", capital:"라바트", region:"africa"},
+                    {no:8, name:"라오스", capital:"비엔티안", region:"asia"},
+                    {no:9, name:"베트남", capital:"하노이", region:"asia"},
+                    {no:10, name:"피지", capital:"수바", region:"oceania"},
+                    {no:11, name:"솔로몬 제도", capital:"호니아라", region:"oceania"},
+                    {no:12, name:"자메이카", capital:"킹스턴", region:"america"},
+                    {no:13, name:"나이비아", capital:"빈트후크", region:"africa"},
+                    {no:14, name:"동티모르", capital:"딜리", region:"asia"},
+                    {no:15, name:"멕시코", capital:"멕시코시티", region:"america"},
+                    {no:16, name:"베네수엘라", capital:"카라카스", region:"america"},
+                    {no:17, name:"서사모아", capital:"아피아", region:"oceania"}
                 ];
+           
+            
+            var template = "<tr><td>${name}</td><td>${capital}</td>"+"<td><button class='detail' data-no='${no}' region='${region}'>상세보기</button></td></tr>";
+            
+            function filterData(region){
+                var result = nationData.filter(function(v, index){
+                   if(v.region == region){
+                       return true;
+                   } 
+                });
+                return result;
+            };
+            
+            $("#list").on("click","button.detail", function(e){
+                var cno = $(this).attr("region"); 
+                console.log(e);
+                alert("상세보기 : " + cno);
             });
+            
+            $("#inquery").click(function(){
+                var arr, str, s;
+                var sel = $("#region option:selected").val();
+                console.log(sel);
+                
+                if(sel == "all"){
+                    arr = nationData;
+                }else{
+                    arr = filterData(sel);
+                }
+                
+                $.each(arr, function(index, item){
+                    s = template;
+                    s = s.replace("${no}", item.no);
+                    s = s.replace("${name}", item.name);
+                    s = s.replace("${capital}", item.capital);
+                    s = s.replace("${region}", item.region);
+                    
+                    str += s;
+                });
+                
+                $("#list").empty();
+                $("#list").append(str);
+            });
+         });
         </script>
-        
-        <style>
-            #wrap { width: 500px; margin: 0 auto;}
-            #nations > thead > tr > { background-color:purple; color: yellow;}
-            #nations > tbody > tr > th { padding: 0px 1px 0px; width: 150px;}
-            #nations > tbody > tr > td { border-bottom: solid 1px gray;}
-        </style>
-        
     </head>
     <body>
         <div id="wrap">
