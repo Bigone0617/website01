@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery</title>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                var nationData = [
+                    {no:1, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:2, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:3, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:4, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:5, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:6, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:7, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:8, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:9, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:10, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:11, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:12, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:13, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:14, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:15, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:16, name:"대한민국", capital:"서울", region:"asia"},
+                    {no:17, name:"대한민국", capital:"서울", region:"asia"}
+                ];
+            });
+        </script>
+        
+        <style>
+            #wrap { width: 500px; margin: 0 auto;}
+            #nations > thead > tr > { background-color:purple; color: yellow;}
+            #nations > tbody > tr > th { padding: 0px 1px 0px; width: 150px;}
+            #nations > tbody > tr > td { border-bottom: solid 1px gray;}
+        </style>
+        
+    </head>
+    <body>
+        <div id="wrap">
+            지역 선택 : 
+            <select id="region">
+                <option value="all" selected>전체 정보 보기</option>
+                <option value="asia">아시아</option>
+                <option value="america">미주</option>
+                <option value="europe">유럽</option>
+                <option value="oceania">대양주</option>
+                <option value="africa">아프리카</option>
+            </select>
+            <button id="inquery">조회</button>
+            
+            <table id="nations">
+                <thead>
+                    <tr>
+                        <th>국가명</th><th>수도</th><th>상세보기</th>
+                    </tr>
+                </thead>
+                <tbody id="list">
+                
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
