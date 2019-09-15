@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title>jQuery Ajax</title>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <style>
+            button {width: 75px; height: 25px;}
+        </style>
+        <script>
+            $(document).ready(function(){
+                const xmlBtn = $("#xmlBtn");
+                const htmlBtn = $("#htmlBtn");
+                const JsonBtn = $("#JsonBtn");
+                
+                xmlBtn.click(function(){
+                    $.ajax({
+                        url:'xml-data.xml',
+                        type:'get',
+                        dataType:'xml',
+                        timeout: 10000,
+                        success: function(xmlData){
+                            var tagList = "";
+                            $(xmlData).find('student').each(function(){
+                                tagList +="<li>" +$(this).find('studentName').text()+"</li>"; 
+                            });
+                            $("#listArea").empty();
+                            $("#listArea").append(tagList);
+                            $("#listArea").show();
+                        },
+                        error: function(xmlData){
+                            $("#listArea").html("<p>Error!!</p>")
+                        }
+                    });
+                });
+                JsonBtn.click(function(){
+                    $.getJSON('json-data.json',function(jsonData){
+                        var tagList = "";
+                        $.each(jsonData.stuinfo,function(){
+                            tagList += "<li>"+this.grade+"</li>"; 
+                        });
+                        $("#listArea").empty();
+                        $("#listArea").append(tagList);
+                        $("#listArea").show();
+                    });
+                });
+                htmlBtn.click(function(){
+                    $("#listArea").empty();
+                    $("#listArea").load('html-data.html',function(htmlData){
+                        $("#listArea").show(); 
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div>
+            <h1>Ajax 활용법</h1>
+        </div>
+        <div>
+            <button id="xmlBtn">xml</button>
+            <button id="JsonBtn">Json</button>
+            <button id="htmlBtn">html</button>
+        </div>
+        <hr>
+        <div>
+            <ul id="listArea">
+                <li id="item">데이터 로드 하기 전...</li>
+            </ul>
+        </div>
+    </body>
+</html>

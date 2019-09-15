@@ -9,6 +9,7 @@
             .pkey{width: 250px;}
             .pname{width: 250px;}
             .ptel{width: 250px;}
+            .pshow{width: 250px;}
             .pdel{width: 250px;}
         </style>
         <script>
@@ -25,6 +26,17 @@
             $(document).ready(function(){
                 const addBtn = $("#add");
                 const saveBtn = $("#save");
+                const showBtn = $("#temprow input.pshow");
+                
+                showBtn.click(function(){
+                    var showBtn = $(this);
+                    var tr = showBtn.parent().parent();
+                    var pkey = tr.find("input.pkey").val();
+                    var pname = tr.find("input.pname").val();
+                    var ptel = tr.find("input.ptel").val();
+                    alert("식별번호 : "+pkey+"\n제품이름 : "+pname+"\n전화번호 : "+ptel);
+                    
+                });
                 
                 $("#temprow input.pdel").click(function(){
                     $(this).parents("tr").remove(); 
@@ -63,6 +75,7 @@
                             <th class="pkey">식별번호</th>
                             <th class="pname">제품이름</th>
                             <th class="ptel">전화번호</th>
+                            <th class="pshow">상세보기</th>
                             <th class="pdel">삭제버튼</th>
                         </tr>
                     </thead>
@@ -78,7 +91,8 @@
                     <td><input type="text" class="pkey" disabled></td>
                     <td><input type="text" class="pname"></td>
                     <td><input type="text" class="ptel"></td>
-                    <td><input type="button" class="pdel">삭제</td>
+                    <td><input type="button" class="pshow" value="상세보기"></td>
+                    <td><input type="button" class="pdel" value="삭제"></td>
                 </tr>
             </table>
         </div>
