@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Open weather</title>
+        <!--<link type="text/css" rel="stylesheet" href="custom.css">-->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    var city = $("input").val();
+                    var appid = "bb1480724875dfc771ad3a521e6d6029";
+                    var url = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&mode=json&units=metric&appid="+appid;
+                    
+                    $.get(url,function(data,status){
+                        console.log(data);
+                        var result =data.sys.country+"의"+ data.name + "의 날씨는"+data.main.temp +"도 입니다.";
+                        $("#result-text").html(result);
+                    });
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <section class="content-wrapper">
+            <h2>날씨검색 웹앱</h2>
+            <div class="input-wrapper">
+                <input type="text">
+                <button>날씨 확인</button>
+            </div>
+            <div class="result-wrapper">
+                
+            </div>
+            <h2 id="result-text">도시를 입력해주세요.</h2>
+            <div id="weather-info">
+            
+            </div>
+        </section>
+        <script type="text/javascript" src="custom.js">
+            
+        </script>
+    </body>
+</html>
