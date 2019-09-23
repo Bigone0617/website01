@@ -1,0 +1,27 @@
+body > #picList > img {
+    width: 300px;
+    height: 200px;
+}
+body > .off{
+    display: none;
+}
+body > .on{
+    width: 1000px;
+    height: 700px;
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+.on > #hide {
+    color : white;
+    background-color: black;
+    padding-top: 5px;
+    padding-right: 10px;
+    float:right;
+    font-size:20px;
+    border : 0;
+}
+#bigShow > #detail > img{
+    width: 500px;
+    height: 400px;
+}
