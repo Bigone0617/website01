@@ -21,7 +21,25 @@ body > .on{
     font-size:20px;
     border : 0;
 }
+
 #bigShow > #detail > img{
     width: 500px;
     height: 400px;
+}
+
+#bigShow > #buttons{
+    padding-top: 50px;
+}
+
+#bigShow > #buttons > input[type="button"]{
+    width: 25px;
+    height: 25px;
+}
+
+.clicked{
+    background-color: gray;
+    color: white;
+    border: 0;
+    width: 25px;
+    height: 25px;
 }

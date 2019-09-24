@@ -17,16 +17,31 @@
                 $("img").on("click",function(){
                     const index = $(this).index()+1;
                     const imgurl = "img/"+index+".jpeg";
-                   
+                    const btn = $("#btn"+index);
+
                     bigShow.removeClass();
                     bigShow.addClass("on");
                     detail.children("img").attr('src',imgurl);
                     detail.children("h3").text(list[index]);
+                    btn.siblings().removeClass();
+                    btn.removeClass();
+                    btn.addClass("clicked");
                 });
                 
                 $("#hide").click(function(){
                     bigShow.removeClass();
                     bigShow.addClass("off");
+                });
+
+                $("#buttons input[type='button']").on('click',function(){
+                    const val = $(this).val();
+                    const imgUrl = "img/"+val+".jpeg";
+                    $(this).siblings().removeClass();
+                    $(this).removeClass();
+                    $(this).addClass("clicked");
+                    detail.children("img").attr('src',imgUrl);
+                    detail.children("h3").text(list[val]);
+                    //console.log($(this).siblings());
                 });
             });
         </script>
@@ -45,6 +60,11 @@
                 <div id="detail" class="none">
                     <h3>아름다운 유럽 풍경을 만끽해보세요!</h3>
                     <img src="img/1.jpeg">
+                </div>
+                <div id="buttons">
+                    <input type="button" id="btn1" value="1" class="">
+                    <input type="button" id="btn2" value="2" class="">
+                    <input type="button" id="btn3" value="3" class="">
                 </div>
         </div>
     </body>
